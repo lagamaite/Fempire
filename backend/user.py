@@ -10,13 +10,15 @@ class User(db.Model):
     status = db.Column(db.String(20), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     interests = db.Column(JSON, nullable=False)  # JSON column to store interests
+    picture = db.Column(db.String(200), nullable=True)  # Path to the uploaded picture
 
-    def __init__(self, name, age, status, location, interests):
+    def __init__(self, name, age, status, location, interests, picture=None):
         self.name = name
         self.age = age
         self.status = status
         self.location = location
         self.interests = interests
+        self.picture = picture
 
     def to_dict(self):
         return {
@@ -26,4 +28,5 @@ class User(db.Model):
             "status": self.status,
             "location": self.location,
             "interests": self.interests,
+            "picture": self.picture,  # Include the picture field in the dictionary
         }

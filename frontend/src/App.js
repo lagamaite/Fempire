@@ -12,8 +12,9 @@ function App() {
     location: "",
     interests: []
   });
+  const [picture, setPicture] = useState(null); // State to hold the picture file
 
-  // Fetch users from backend
+  // Fetch users from the backend
   useEffect(() => {
     fetch("http://localhost:5000/api/users")
       .then((response) => response.json())
@@ -24,22 +25,27 @@ function App() {
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
+  // Handle adding a new user
   const handleAddUser = (e) => {
     e.preventDefault();
 
+    // Create a FormData object to send both file and text data
+    const formData = new FormData();
+    formData.append("name", newUser.name);
+    formData.append("age", newUser.age);
+    formData.append("status", newUser.status);
+    formData.append("location", newUser.location);
+    formData.append("interests", newUser.interests.join(","));
+    if (picture) formData.append("picture", picture);
+
     fetch("http://localhost:5000/api/users", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("User added:", data);
-        // Optimistically add the new user to the state
-        setUsers((prevUsers) => [...prevUsers, data]);
-        // Reset the form
+        setUsers((prevUsers) => [...prevUsers, data]); // Add the new user to the state
         setNewUser({
           name: "",
           age: "",
@@ -47,10 +53,12 @@ function App() {
           location: "",
           interests: []
         });
+        setPicture(null); // Reset the picture file input
       })
       .catch((error) => console.error("Error adding user:", error));
   };
 
+  // Handle deleting a user
   const handleDeleteUser = (userId) => {
     fetch(`http://localhost:5000/api/users/${userId}`, {
       method: "DELETE",
@@ -66,11 +74,6 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <div className="search-bar">
-        <input type="text" placeholder="Hinted search text" />
-        <button className="search-button">🔍</button>
-      </div>
-
       <div className="results-header">{users.length} results</div>
       <div className="user-list">
         {users.map((user) => (
@@ -85,49 +88,83 @@ function App() {
       <div className="add-user-form">
         <h2>Add New User</h2>
         <form onSubmit={handleAddUser}>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newUser.name}
-            onChange={(e) =>
-              setNewUser({ ...newUser, name: e.target.value })
-            }
-          />
-          <input
-            type="number"
-            placeholder="Age"
-            value={newUser.age}
-            onChange={(e) =>
-              setNewUser({ ...newUser, age: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Status"
-            value={newUser.status}
-            onChange={(e) =>
-              setNewUser({ ...newUser, status: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Location"
-            value={newUser.location}
-            onChange={(e) =>
-              setNewUser({ ...newUser, location: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Interests (comma separated)"
-            value={newUser.interests.join(", ")}
-            onChange={(e) =>
-              setNewUser({
-                ...newUser,
-                interests: e.target.value.split(",").map((i) => i.trim()),
-              })
-            }
-          />
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+              value={newUser.name}
+              onChange={(e) =>
+                setNewUser({ ...newUser, name: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              placeholder="Enter your age"
+              value={newUser.age}
+              onChange={(e) =>
+                setNewUser({ ...newUser, age: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="status">Status:</label>
+            <input
+              type="text"
+              id="status"
+              placeholder="Enter your status"
+              value={newUser.status}
+              onChange={(e) =>
+                setNewUser({ ...newUser, status: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location:</label>
+            <input
+              type="text"
+              id="location"
+              placeholder="Enter your location"
+              value={newUser.location}
+              onChange={(e) =>
+                setNewUser({ ...newUser, location: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="interests">Interests:</label>
+            <input
+              type="text"
+              id="interests"
+              placeholder="Enter interests (comma-separated)"
+              value={newUser.interests.join(", ")}
+              onChange={(e) =>
+                setNewUser({
+                  ...newUser,
+                  interests: e.target.value.split(",").map((i) => i.trim()),
+                })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="picture">Upload Picture Here:</label>
+            <input
+              type="file"
+              id="picture"
+              accept="image/*"
+              onChange={(e) => setPicture(e.target.files[0])}
+            />
+          </div>
           <button type="submit" className="add-user-button">
             Add User
           </button>

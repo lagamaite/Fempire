@@ -2,23 +2,22 @@ import React from "react";
 import "./UserCard.css";
 
 const UserCard = ({ user, onDelete }) => {
-  // Use default value for interests if undefined
-  const interests = user.interests || [];
-
   return (
     <div className="user-card">
-      <img
-        className="user-avatar"
-        src={`https://api.dicebear.com/5.x/female/svg?seed=${user.name}`}
-        alt={user.name}
-      />
+      {user.picture && (
+        <img
+          className="user-avatar"
+          src={`http://localhost:5000${user.picture}`}
+          alt={`${user.name}'s avatar`}
+        />
+      )}
       <div className="user-info">
         <h3>{user.name}</h3>
         <p>Age: {user.age}</p>
         <p>Status: {user.status}</p>
         <p>Location: {user.location}</p>
         <div className="user-interests">
-          {interests.map((interest, index) => (
+          {user.interests.map((interest, index) => (
             <span key={index} className="interest-badge">
               {interest}
             </span>
