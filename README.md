@@ -16,6 +16,8 @@ VSCode: https://code.visualstudio.com/
 
 ![Git Bash](git-bash.png)
 
+If you are a MacOS or Linux user, bash or zsh should work for your terminal and be compatible with the steps below already
+
 ## Setup
 
 Run MySQL Workbench, create a password for your instance and keep it handy, as it will be used each time you connect to the db
