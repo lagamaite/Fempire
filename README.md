@@ -51,6 +51,25 @@ Install dependencies: `pip install -r requirements.txt`
 
 Run flask server: `python3 server.py`
 
+We will keep this terminal window running in the background as this is our backend server. Open a new terminal window (for Windows users, same steps as in the Prerequisites above)
+
+Confirm that node.js was properly installed:
+
+`node -v`
+
+`npm -v`
+
+Next, open frontend directory:
+
+`cd frontend`
+
+Install node_modules: `npm install`
+
+Run the React app: `npm start`
+
+Browser should automatically open to http://localhost:3000/ and display React app
+
+Happy coding! 
 
 
 
