@@ -1,0 +1,37 @@
+.user-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .user-info h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+  }
+  
+  .user-interests {
+    margin-top: 10px;
+  }
+  
+  .interest-badge {
+    background-color: #ffff99; /* Match mockup */
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  
