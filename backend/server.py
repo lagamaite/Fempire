@@ -45,17 +45,19 @@ def home():
 
 ## API ENDPOINTS FOR FRONTEND 
 @app.route('/api/users')
+@app.route('/api/users', methods=['GET'])
 def get_users():
     users = User.query.all()
     users_list = []
-    
     for user in users:
-        # Check if interests is already a list or a string
+        # Ensure interests is returned as a list
         if isinstance(user.interests, str):
             interests = user.interests.split(",") if user.interests else []
+        elif isinstance(user.interests, list):
+            interests = user.interests
         else:
-            interests = user.interests  # Assuming it's already a list
-        
+            interests = []  # Default to an empty list if undefined or invalid
+
         users_list.append({
             "id": user.id,
             "name": user.name,
@@ -64,7 +66,6 @@ def get_users():
             "location": user.location,
             "interests": interests
         })
-    
     return jsonify(users_list)
 
 
@@ -77,17 +78,26 @@ def add_user():
     location = data.get('location')
     interests = data.get('interests')
 
-    # Ensure interests is a list (split by commas if it's a string)
-    if isinstance(interests, str):
-        interests_list = [i.strip() for i in interests.split(',')]
-    else:
-        interests_list = interests
+    # Ensure interests are properly stored as a string
+    if isinstance(interests, list):
+        interests = ", ".join(interests)
+    elif not interests:
+        interests = ""
 
-    new_user = User(name=name, age=int(age), status=status, location=location, interests=interests_list)
+    # Create the new user
+    new_user = User(name=name, age=age, status=status, location=location, interests=interests)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User added successfully'}), 201
+    # Return the full user object, including the auto-generated ID
+    return jsonify({
+        "id": new_user.id,
+        "name": new_user.name,
+        "age": new_user.age,
+        "status": new_user.status,
+        "location": new_user.location,
+        "interests": new_user.interests.split(", ") if new_user.interests else []
+    }), 201
 
 @app.route('/api/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
