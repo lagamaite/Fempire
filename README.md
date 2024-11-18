@@ -40,6 +40,9 @@ DB_PASSWORD=testpass # or your unique db password you set
 DB_HOST=localhost
 DB_NAME=fempire_db
 ```
+
+We create this local file because we do not want to hard-code any sensitive passwords
+
 Next, open the backend directory:
 
 `cd backend`
