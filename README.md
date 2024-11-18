@@ -73,5 +73,26 @@ Browser should automatically open to http://localhost:3000/ and display React ap
 
 Happy coding! 
 
+Here is a working demo image of the current UI + running database:
 
+![Fempire Demo](fempire-demo.png)
 
+## Tips while coding:
+
+### ChatGPT is your bestie 
+
+No really, look at all this sweet code I was able to get from it helping me debug. Being a good prompt engineer can go a long way with productivity. The future is now, utilize what is available:
+
+![ChatGPT](chatgpt.png)
+
+### Testing backend
+
+Postman is a great tool for individually testing API endpoints for backend and will return the proper status codes or errors as well as response objects. This is optional to have, but may be handy in the future:
+
+https://www.postman.com/
+
+You can also use curl commands to test endpoints. Example:
+
+`curl -X GET http://localhost:5000/api/users | jq`
+
+![curl](curl.png)
