@@ -14,7 +14,7 @@ VSCode: https://code.visualstudio.com/
 
 (Windows users only): when opening VSCode terminal, navigate to the plus sign in the top right of the terminal window, select the dropdown next to it, and change to "Git Bash":
 
-![Git Bash](git-bash.png)
+![Git Bash](setup/git-bash.png)
 
 If you are a MacOS or Linux user, bash or zsh should work for your terminal and be compatible with the steps below already
 
@@ -24,7 +24,7 @@ Run MySQL Workbench, create a password for your instance and keep it handy, as i
 
 Right click in the "Schemas" column to the left and select "Create Schema":
 
-![Schema](schema.png)
+![Schema](setup/schema.png)
 
 For the name, enter `fempire_db` and select Apply near the bottom. A new window will pop up confirming the creation, click Apply again
 
@@ -75,7 +75,7 @@ Happy coding!
 
 Here is a working demo image of the current UI + running database:
 
-![Fempire Demo](fempire-demo.png)
+![Fempire Demo](setup/fempire-demo.png)
 
 ## Tips while coding:
 
@@ -83,7 +83,7 @@ Here is a working demo image of the current UI + running database:
 
 No really, look at all this sweet code I was able to get from it helping me debug. Being a good prompt engineer can go a long way with productivity. The future is now, utilize what is available:
 
-![ChatGPT](chatgpt.png)
+![ChatGPT](setup/chatgpt.png)
 
 ### Testing backend
 
@@ -95,4 +95,4 @@ You can also use curl commands to test endpoints. Example:
 
 `curl -X GET http://localhost:5000/api/users | jq`
 
-![curl](curl.png)
+![curl](setup/curl.png)
