@@ -4,7 +4,10 @@
 
 The following should be downloaded and installed before proceeding with setup:
 
-MySQL Workbench: https://www.mysql.com/products/workbench/
+MySQL Workbench: https://dev.mysql.com/downloads/workbench/
+* (Windows users only) Select "Recommended Download: MySQL Installer for Windows" and select the bottom MSI installer to download. Click through the wizard, accepting all default options, which will install MySQL products including server, client, and workbench
+* (MacOS users only): If your mac has an M-series CPU (M1, M2, etc.) select the ARM DMG file to download. If your mac has an Intel CPU select x86 DMG file to download and click through any pop-ups accepting default settings
+* If prompted, create an Oracle account if you don't already have one
 
 node.js: https://nodejs.org/en/download/package-manager/
 
