@@ -82,7 +82,7 @@ Here is a working demo image of the current UI + running database:
 
 ## Tips while coding:
 
-## Pull changes early and often!
+### Pull changes early and often!
 
 Make sure your repo is updated with the latest changes by typing `git pull` in your terminal to avoid any potential merge conflicts 
 
