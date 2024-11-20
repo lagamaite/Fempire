@@ -82,6 +82,10 @@ Here is a working demo image of the current UI + running database:
 
 ## Tips while coding:
 
+## Pull changes early and often!
+
+Make sure your repo is updated with the latest changes by typing `git pull` in your terminal to avoid any potential merge conflicts 
+
 ### ChatGPT is your bestie 
 
 No really, look at all this sweet code I was able to get from it helping me debug. Being a good prompt engineer can go a long way with productivity. The future is now, utilize what is available:
